@@ -9,5 +9,72 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- <script>
+      const NUMBER_OF_SNOWFLAKES = 300;
+      const MAX_SNOWFLAKE_SIZE = 5;
+      const MAX_SNOWFLAKE_SPEED = 2;
+      const SNOWFLAKE_COLOUR = "#000";
+      const snowFlakes = [];
+      const canvas = document.createElement('canvas');
+      canvas.style.position = "absolute";
+      canvas.style.top = "0px";
+      canvas.style.pointerEvents = "none";
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext("2d");
+      const createSnowFlake = () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.floor(Math.random() * MAX_SNOWFLAKE_SIZE) + 1,
+        colour: SNOWFLAKE_COLOUR,
+        speed: Math.random() * MAX_SNOWFLAKE_SPEED + 2,
+        sway: Math.random() - 0.5
+      });
+
+      const drawSnowFlake = snowFlake => {
+        ctx.beginPath(),
+        ctx.arc(snowFlake.x, snowFlake.y, snowFlake.radius, 0, Math.PI * 2)
+        ctx.fillStyle = snowFlake.colour;
+        ctx.fill();
+        ctx.closePath();
+      };
+      drawSnowFlake(createSnowFlake());
+      const updateSnowFlake = snowFlake => {
+        snowFlake.y += snowFlake.speed;
+        snowFlake.x += snowFlake.sway;
+        if(snowFlake.y > canvas.height){
+          Object.assign(snowFlake, createSnowFlake());
+        }
+      }
+
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        snowFlakes.forEach(snowFlake => {
+          updateSnowFlake(snowFlake);
+          drawSnowFlake(snowFlake);
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      for(let i = 0; i < NUMBER_OF_SNOWFLAKES; i++){
+        snowFlakes.push(createSnowFlake());
+      }
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener('scroll', () => {
+        canvas.style.top = `${window.scrollY}px`;
+      });
+
+      animate();
+      // setInterval(animate, 60);
+    </script> -->
   </body>
 </html>

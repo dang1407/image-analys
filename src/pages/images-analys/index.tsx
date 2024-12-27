@@ -4,6 +4,7 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import ImageResult from "@/assets/image3.jpg";
 import { Skeleton } from "@/components/ui/skeleton";
+import ImageView from "@/components/mine/ImageView";
 function UploadImage() {
   const [appState, setAppState] = useState(1);
   const [image1Url, setImage1Url] = useState("");
@@ -31,39 +32,43 @@ function UploadImage() {
   return (
     <>
       <div className="w-full h-full flex flex-col justify-center items-center">
-       <div className="input-image flex justify-between gap-8 w-[70%]">
-        <div className="flex flex-col items-center">
+       <div className="input-image flex justify-between gap-8 w-full">
+        <div className="flex flex-col items-center w-[33%]">
           {
             image1Url &&
-            <img className="w-64 rounded-lg" src={image1Url}/>
+            <ImageView className="w-[80%] rounded-lg" src={image1Url}/>
           }
           {
             !image1Url &&
-            <img src={UndefinedImage} alt="" className="w-64 h-64" />
+            <ImageView src={UndefinedImage} alt="" className="w-[80%]" />
           }
           <Label htmlFor="image1" className="mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Ảnh nguồn 1</Label>
           <Input type="file" id="image1" className="hidden" onChange={(event) => setImage1Url(getImageUrl(event))}></Input>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-[33%]">
         {
             image2Url &&
-            <img className="w-64 rounded-lg" src={image2Url}/>
+            <ImageView className="w-[80%] rounded-lg" src={image2Url}/>
           }
           {
             !image2Url &&
-            <img src={UndefinedImage} alt="" className="w-64 h-64" />
+            <ImageView src={UndefinedImage} alt="" className="w-[80%]" />
           }
           <Label htmlFor="image2" className="mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Ảnh nguồn 2</Label>
           <Input type="file" id="image2" className="hidden" onChange={(event) => setImage2Url(getImageUrl(event))}></Input>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-[33%]">
           {
             appState == 3 &&
-            <img className="w-64 rounded-lg" src={ImageResult}/>
+            <ImageView className="w-[80%] rounded-lg" src={ImageResult}/>
           }
           {
             appState == 2 && 
-            <Skeleton className="w-64 h-64 rounded-lg"></Skeleton>
+            <Skeleton className="w-[80%] h-full rounded-lg"></Skeleton>
+          }
+          {
+            appState == 1 && 
+            <div className="h-full w-[80%]"></div>
           }
           <Label htmlFor="image2" className="mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Kết quả</Label>
           {/* {
