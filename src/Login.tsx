@@ -15,7 +15,7 @@ export default function Login() {
   const navigate = useNavigate();
   const loginHandler = async () => {
     if(loginData.UserName == 'minhthuong123' && loginData.Password == '12345678'){
-      navigate("/images-analys");
+      navigate("/");
     }
   }
   return (
