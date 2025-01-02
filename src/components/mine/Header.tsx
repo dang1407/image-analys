@@ -25,7 +25,7 @@ const headers = [
 
 export default function Header(props: iProps) {
   return (
-    <div className="flex border-b-[1px] border-b-[#ddd]" style={props.style}>
+    <div className="flex border-b-[1px] bg-black/10 border-b-[#ddd]" style={props.style}>
       <div className="logo-container flex items-center gap-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"

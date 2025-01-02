@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react";
+import { useState } from "react";
 import UndefinedImage from "@/assets/imageIcon.png";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
@@ -9,12 +9,7 @@ function UploadImage() {
   const [appState, setAppState] = useState(1);
   const [image1Url, setImage1Url] = useState("");
   const [image2Url, setImage2Url] = useState("");
-  useEffect(() => {
-    if (image1Url && image2Url) {
-      setAppState(2);
-      setTimeout(() => setAppState(3), 3000);
-    }
-  }, [image1Url, image2Url]);
+
   function getImageUrl(event: React.ChangeEvent<HTMLInputElement>) {
     // debugger;
     const file = event.target.files?.[0];
@@ -42,7 +37,7 @@ function UploadImage() {
             !image1Url &&
             <ImageView src={UndefinedImage} alt="" className="w-[80%]" />
           }
-          <Label htmlFor="image1" className="mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Ảnh nguồn 1</Label>
+          <Label htmlFor="image1" className="cursor-pointer mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Ảnh MRI</Label>
           <Input type="file" id="image1" className="hidden" onChange={(event) => setImage1Url(getImageUrl(event))}></Input>
         </div>
         <div className="flex flex-col items-center w-[33%]">
@@ -54,7 +49,7 @@ function UploadImage() {
             !image2Url &&
             <ImageView src={UndefinedImage} alt="" className="w-[80%]" />
           }
-          <Label htmlFor="image2" className="mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Ảnh nguồn 2</Label>
+          <Label htmlFor="image2" className="cursor-pointer mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Ảnh PET</Label>
           <Input type="file" id="image2" className="hidden" onChange={(event) => setImage2Url(getImageUrl(event))}></Input>
         </div>
         <div className="flex flex-col items-center w-[33%]">
@@ -70,7 +65,14 @@ function UploadImage() {
             appState == 1 && 
             <div className="h-full w-[80%]"></div>
           }
-          <Label htmlFor="image2" className="mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">Kết quả</Label>
+          <Label className="cursor-pointer mt-4 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2" onClick={() => {
+            if(image1Url && image2Url) {
+              setAppState(2);
+              setTimeout(() => {
+                setAppState(3)
+              }, 5000);
+            }
+          }}>Tổng hợp</Label>
           {/* {
             !image3Url &&
             <img src={UndefinedImage} className="w-64 h-64" alt="" />
