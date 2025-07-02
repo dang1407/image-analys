@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import UploadImage from "./pages/images-analys";
 import Layout from "./Layout";
-
+import Home from "./pages/homes";
+import RequireAuth from './auths/RequiredAuth';
 // Component kiểm tra đăng nhập
 // const RequireAuth: React.FC<{ children: JSX.Element }> = ({ children }) => {
 //   const isAuthenticated = Boolean(localStorage.getItem("authToken")); // Hoặc logic kiểm tra trạng thái đăng nhập
@@ -14,7 +15,8 @@ const App: React.FC = () => (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Layout />}>
-        <Route index element={<UploadImage />} />
+        <Route index element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path="images-analys" element={<UploadImage />} />
       </Route>
     </Routes>
   </BrowserRouter>

@@ -4,18 +4,33 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./componen
 import { Input } from "./components/ui/input"
 import { PasswordInput } from "./components/ui/password"
 import { Label } from "@radix-ui/react-label"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ApiService } from './utils/api_service'
+import ApiUrl from './constants/ApiUrl'
+import { useHandleError } from './hooks/useHandleError'
+import { AxiosError } from 'axios'
 class LoginData {
   public UserName?: string;
   public Password?: string;
 }
 
+interface LoginResponseDTO {
+  AccessToken?: string;
+}
 export default function Login() {
   const [loginData, setLoginData] = useState<LoginData>({});
   const navigate = useNavigate();
+  const location = useLocation();
+  const errorHandler = useHandleError();
   const loginHandler = async () => {
-    if(loginData.UserName == 'minhthuong123' && loginData.Password == '12345678'){
-      navigate("/");
+    try {
+      const response = await ApiService.post<LoginResponseDTO>(ApiUrl.Login, "", JSON.stringify(loginData));
+      localStorage.setItem(ApiService.AccessTokenKey, response.AccessToken ?? "");
+      if (location.state.from) {
+        navigate(location.state.from);
+      } else navigate("/");
+    } catch (error) {
+      errorHandler(error as AxiosError);
     }
   }
   return (
