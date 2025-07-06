@@ -1,11 +1,12 @@
 import { useToast } from "@/hooks/use-toast";
-import { CustomError } from "@/utils/api_service";
-import { AxiosError } from "axios";
+import { CustomError } from "@/utils/ApiService";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from 'react-router-dom';
 export const useHandleError = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  return (error: AxiosError) => {
+
+  const handleAxiosError = (error: AxiosError) => {
     const status = error.response?.status;
     const responseData = error.response?.data;
   
@@ -77,5 +78,13 @@ export const useHandleError = () => {
     // });
     
     throw customError;
+  } 
+
+  return (error: Error) => {
+    if(axios.isAxiosError(error)){
+      handleAxiosError(error);
+    } else {
+      console.log(error)
+    }
   };
 };

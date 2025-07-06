@@ -1,8 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { ApiService } from '@/utils/api_service';
+import { ApiService } from '@/utils/ApiService';
 import ApiUrl from '@/constants/ApiUrl';
 import { useHandleError } from "@/hooks/useHandleError.ts";
-import { AxiosError } from 'axios';
 interface RequireAuthProps {
   children: JSX.Element;
 }
@@ -24,7 +23,7 @@ const RequireAuth = ({ children }: RequireAuthProps) => {
     );
     return children;
   } catch (error: unknown) {
-    errorHandler(error as AxiosError);
+    errorHandler(error as Error);
     // Clear token and redirect to login when relogin fails
     localStorage.removeItem(ApiService.AccessTokenKey);
     return <Navigate to="/login" state={{ from: location }} replace />;

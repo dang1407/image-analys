@@ -4,7 +4,7 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import ImageResult from "@/assets/image3.jpg";
 import { Skeleton } from "@/components/ui/skeleton";
-import ImageView from "@/components/mine/ImageView";
+import ImageView from "@/components/custom/ImageView";
 function UploadImage() {
   const [appState, setAppState] = useState(1);
   const [image1Url, setImage1Url] = useState("");

@@ -4,4 +4,5 @@ export default class ApiUrl {
   public static ReLogin : string = BASE_URL +  "Authenticate/relogin";
   public static SignUp : string = BASE_URL +  "Authenticate/sign-up";
   public static User : string = BASE_URL +  "User";
+  public static GetUserMenu : string = BASE_URL + "UI/UserMenu";
 }

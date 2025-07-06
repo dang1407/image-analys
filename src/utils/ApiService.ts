@@ -25,7 +25,7 @@ export class ApiService {
     }
 
     // Thêm token nếu có
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem(this.AccessTokenKey);
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
     }

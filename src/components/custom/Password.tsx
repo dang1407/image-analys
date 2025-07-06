@@ -3,13 +3,13 @@
 import * as React from 'react'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
-import { Input, type InputProps } from '@/components/ui/input'
+import  {Button}  from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { Input, InputProps } from '../ui/input'
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(({ className, ...props }, ref) => {
 	const [showPassword, setShowPassword] = React.useState(false)
-	const disabled = props.value === '' || props.value === undefined || props.disabled
+	const disabled = props.inputValue === '' || props.inputValue === undefined || props.disabled
 
 	return (
 		<div className="relative">
@@ -23,7 +23,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(({ classNam
 				type="button"
 				variant="ghost"
 				size="sm"
-				className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+				className="absolute right-0 bottom-0 h-9 px-3 py-2 hover:bg-transparent border-t border-r border-b !border-l-0 border-input"
 				onClick={() => setShowPassword((prev) => !prev)}
 				disabled={disabled}
 			>

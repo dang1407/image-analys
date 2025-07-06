@@ -14,8 +14,8 @@ const App: React.FC = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Layout />}>
-        <Route index element={<RequireAuth><Home /></RequireAuth>} />
+      <Route path="/" element={<RequireAuth><Layout /></RequireAuth>}>
+        <Route index element={<Home />} />
         <Route path="images-analys" element={<UploadImage />} />
       </Route>
     </Routes>
